@@ -11,13 +11,13 @@ pipeline {
       }
     }
 
-    stage('Build Project') {
+    /*stage('Build Project') {
       steps {
           sh "mvn clean install"
       }
-    }
+    }*/
 
-    stage('Static Code Analysis ') {
+    stage('Build & Static Code Analysis ') {
       steps {
         withSonarQubeEnv(envOnly: true, installationName: 'sonarqube-server', credentialsId: '4f92fd01-ca54-4b3d-b1fd-c96a30aa2e2a') {
     	    sh "mvn clean package sonar:sonar"
