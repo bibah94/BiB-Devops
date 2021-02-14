@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    PATH = "/opt/maven/bin:$PATH"
+  }
   stages {
 
     stage('Cloning Project') {
@@ -9,9 +12,6 @@ pipeline {
     }
 
     stage('Build Project') {
-      environment {
-          PATH = "/opt/maven/bin:$PATH"
-      }
       steps {
           sh "mvn clean install"
       }
