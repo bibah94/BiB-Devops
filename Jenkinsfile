@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent none
   environment {
     PATH = "/opt/maven/bin:$PATH"
     scannerHome = tool 'sonar-scanner'
@@ -23,11 +23,9 @@ pipeline {
 
     stage('Quality Gate') {
       steps {
-        withSonarQubeEnv(envOnly: true, installationName: 'sonarqube-server', credentialsId: '4f92fd01-ca54-4b3d-b1fd-c96a30aa2e2a') {
-          timeout(time: 1, unit: 'HOURS') {
-            waitForQualityGate abortPipeline: true
-          }
-        } 
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
       }
     }
   }
