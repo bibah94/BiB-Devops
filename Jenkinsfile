@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     PATH = "/opt/maven/bin:$PATH"
+    scannerHome = tool 'sonar-scanner'
   }
   stages {
 
