@@ -29,8 +29,7 @@ pipeline {
 
     stage('Quality Gate') {
       steps {
-//        withSonarQubeEnv(envOnly: true, installationName: 'sonarqube-server', credentialsId: '4f92fd01-ca54-4b3d-b1fd-c96a30aa2e2a') {
-        withSonarQubeEnv{
+        withSonarQubeEnv(envOnly: true, installationName: 'sonarqube-server', credentialsId: '4f92fd01-ca54-4b3d-b1fd-c96a30aa2e2a') {
           timeout(time: 1, unit: 'HOURS') {
             waitForQualityGate abortPipeline: true
           }
